@@ -78,6 +78,8 @@ set(OMV_MOD_SRCS
   ${OPENMV_DIR}/src/omv/modules/py_omv.c  
   ${PROJECT_DIR}/src/omv_mlab/srcs/py_sensor.c
   ${PROJECT_DIR}/src/omv_mlab/srcs/py_lcd.c
+  ${PROJECT_DIR}/src/omv_mlab/srcs/dl.cpp
+  ${PROJECT_DIR}/src/omv_mlab/srcs/py_dl.c
 )
 
 list(APPEND OMV_SRCS "${OMV_MOD_SRCS}")
@@ -86,6 +88,7 @@ list(APPEND OMV_SRCS ${PROJECT_DIR}/src/omv_mlab/srcs/usbdbg.c)
 endif()
 
 set(OMV_INCLUDEDIRS
+  ${PROJECT_DIR}/src/omv_mlab/srcs
   ${PROJECT_DIR}/src/omv_mlab/inc
   ${PROJECT_DIR}/src/omv_mlab/board_esp32s
   ${OPENMV_DIR}/src/omv/alloc
