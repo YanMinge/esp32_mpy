@@ -192,6 +192,19 @@ void st7789_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * colo
 
     uint32_t size = lv_area_get_width(area) * lv_area_get_height(area);
 
+    //*
+    uint8_t* color_data = (uint8_t*) color_map;
+    for(int i = 0; i < size * 2; i+=2){
+        uint8_t temp_high = 0;
+        uint8_t temp_low = 0;
+        temp_high = color_data[i];
+        color_data[i] = color_data[i+1];
+        color_data[i+1] = temp_high;
+        //color_data[i] = 0xF8;
+        //color_data[i+1] = 0x00;
+    }
+    //*/
+
     st7789_send_color((void*)color_map, size * 2);
 
 }
@@ -240,7 +253,8 @@ static void st7789_set_orientation(uint8_t orientation)
     };
 
     ESP_LOGI(TAG, "0x36 command value: 0x%02X", data[orientation]);
-
+    //uint8_t data1[] = {0x08};
     st7789_send_cmd(ST7789_MADCTL);
     st7789_send_data((void *) &data[orientation], 1);
+    //st7789_send_data(data1, 1);
 }

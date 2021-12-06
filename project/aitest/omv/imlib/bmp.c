@@ -294,7 +294,10 @@ void bmp_write_subimg(image_t *img, const char *path, rectangle_t *r)
         write_long(&fp, 0x1F);
         for (int i = 0; i < rect.h; i++) {
             for (int j = 0; j < rect.w; j++) {
-                write_word(&fp, IM_GET_RGB565_PIXEL(img, (rect.x + j), (rect.y + i)));
+                //write_word(&fp, IM_GET_RGB565_PIXEL(img, (rect.x + j), (rect.y + i)));
+                uint16_t pixel = IM_GET_RGB565_PIXEL(img, (rect.x + j), (rect.y + i));
+                pixel = (((pixel << 8) &0xFF00) | ((pixel >> 8) &0x00FF));
+                write_word(&fp, pixel);
             }
             for (int j = 0; j < waste; j++) {
                 write_word(&fp, 0);

@@ -156,7 +156,7 @@ static void jpeg_get_mcu(image_t *src, int x_offset, int y_offset, int dx, int d
 
                 for (int x = 0, xx = dx - 1; x < xx; x += 2, index += 2) {
                     int pixels = *rp++;
-                    pixels = ((pixels << 8) &0xFF00FF00) | ((pixels >> 8) &0x00FF00FF);
+                    //pixels = ((pixels << 8) &0xFF00FF00) | ((pixels >> 8) &0x00FF00FF);
                     int r_pixels = ((pixels >> 8) & 0xf800f8) | ((pixels >> 13) & 0x70007);
                     int g_pixels = ((pixels >> 3) & 0xfc00fc) | ((pixels >> 9) & 0x30003);
                     int b_pixels = ((pixels << 3) & 0xf800f8) | ((pixels >> 2) & 0x70007);

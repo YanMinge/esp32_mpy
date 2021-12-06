@@ -25,14 +25,14 @@ extern "C" {
 #  ifdef CONFIG_LV_HOR_RES_MAX
 #    define LV_HOR_RES_MAX CONFIG_LV_HOR_RES_MAX
 #  else
-#    define  LV_HOR_RES_MAX          (240)
+#    define  LV_HOR_RES_MAX          (320)
 #  endif
 #endif
 #ifndef LV_VER_RES_MAX
 #  ifdef CONFIG_LV_VER_RES_MAX
 #    define LV_VER_RES_MAX CONFIG_LV_VER_RES_MAX
 #  else
-#    define  LV_VER_RES_MAX          (320)
+#    define  LV_VER_RES_MAX          (240)
 #  endif
 #endif
 

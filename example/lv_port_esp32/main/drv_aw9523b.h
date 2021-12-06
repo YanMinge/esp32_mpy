@@ -51,6 +51,10 @@ typedef enum
 } ext_pin_num;
 
 
+//#define BOARD_MATATALAB
+#define BOARD_MATATALAB_SP4
+
+#if defined BOARD_MATATALAB
 #define CAMERA_RESET_PIN          P10
 #define CAMERA_PWDN_PIN           P11
 #define VIBRATION_MOTOR_PIN       P12
@@ -64,7 +68,25 @@ typedef enum
 #define HOME_PIN                  P00
 #define BACK_PIN                  P01
 
+#elif defined BOARD_MATATALAB_SP4
+#define CAMERA_RESET_PIN          P13
+#define CAMERA_PWDN_PIN           P14
+#define LCD_LEDK_PIN              P12
+#define LCD_RESET_PIN             P11
+#define LCD_CS_PIN                P10
+#define PA_CTRL_PIN               P16
+#define IR_EN_PIN                 P07
+#define SD_P_EN_PIN               P06
 
+#define HOME_PIN                  P00
+//#define VIBRATION_MOTOR_PIN       P12
+//#define LCD_TP_RESET_PIN          P14
+//#define PERI_PWR_ON_PIN           P16
+//#define LIGHT_SW_PIN              P17
+
+
+//#define BACK_PIN                  P01
+#endif
 
 typedef enum
 {

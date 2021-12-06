@@ -30,6 +30,11 @@
 #include "lvgl_helpers.h"
 #include "drv_aw9523b.h"
 
+//#define BOARD_MATATALAB
+//#define BOARD_S3_DevKitC
+//#define BOARD_S3_KORVO_2
+#define BOARD_MATATALAB_SP4
+
 #ifndef CONFIG_LV_TFT_DISPLAY_MONOCHROME
     #if defined CONFIG_LV_USE_DEMO_WIDGETS
         #include "lv_examples/src/lv_demo_widgets/lv_demo_widgets.h"
@@ -87,14 +92,31 @@ static void guiTask(void *pvParameter) {
     xGuiSemaphore = xSemaphoreCreateMutex();
 
     vTaskDelay(1000 / portTICK_RATE_MS);
-    aw9523b_init();
-    ext_write_digital(CAMERA_RESET_PIN, 1);
-    ext_write_digital(CAMERA_PWDN_PIN, 0);
-    ext_write_digital(VIBRATION_MOTOR_PIN, 1);
-    ext_write_digital(LCD_LEDK_PIN, 0);
-    ext_write_digital(LCD_TP_RESET_PIN, 1);
-    ext_write_digital(PERI_PWR_ON_PIN, 0);
-    ext_write_digital(LIGHT_SW_PIN, 0);
+    
+  #if defined BOARD_MATATALAB 
+  aw9523b_init();    
+  ext_write_digital(VIBRATION_MOTOR_PIN, 1);
+  ext_write_digital(LCD_TP_RESET_PIN, 1);
+  ext_write_digital(PERI_PWR_ON_PIN, 0);
+  ext_write_digital(LIGHT_SW_PIN, 0);
+  CAM_PWDN_LOW();
+  CAM_RST_HIGH();
+  i2c_driver_delete(SENSOR_I2C_PORT);
+  #elif defined BOARD_S3_DevKitC
+  ESP_LOGI(TAG, "OMV_LAB esp32_sensor_init");
+  #elif defined BOARD_MATATALAB_SP4
+  aw9523b_init();    
+
+  ext_write_digital(LCD_RESET_PIN, 0);
+  vTaskDelay(10 / portTICK_PERIOD_MS);
+  ext_write_digital(SD_P_EN_PIN, 1);
+  ext_write_digital(PA_CTRL_PIN, 1);
+  ext_write_digital(LCD_RESET_PIN, 1);
+  ext_write_digital(LCD_CS_PIN, 0);
+  ext_write_digital(IR_EN_PIN, 0);
+
+  //i2c_driver_delete(SENSOR_I2C_PORT);
+  #endif
 
     lv_init();
 

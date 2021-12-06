@@ -228,10 +228,12 @@ typedef union {
 typedef union {
     struct {
 #if LV_COLOR_16_SWAP == 0
+#pragma message("LV_COLOR_16_SWAP == 0")
         uint16_t blue : 5;
         uint16_t green : 6;
         uint16_t red : 5;
 #else
+#pragma message("LV_COLOR_16_SWAP == 1")
         uint16_t green_h : 3;
         uint16_t red : 5;
         uint16_t blue : 5;

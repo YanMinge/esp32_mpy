@@ -9,8 +9,8 @@ BOARD ?= GENERIC_S3
 BUILD ?= build-$(BOARD)
 
 # Device serial settings.
-PORT ?= /dev/ttyUSB0
-BAUD ?= 460800
+PORT ?= /dev/ttyS15
+BAUD ?= 921600
 
 PYTHON ?= python3
 
@@ -29,7 +29,7 @@ ifdef FROZEN_MANIFEST
 endif
 
 all:
-	main/copy_leftmodules.sh
+	#main/copy_leftmodules.sh
 	rm -rf $(BUILD)/frozen_content.c && idf.py $(IDFPY_FLAGS) build
 	@$(PYTHON) makeimg.py \
 		$(BUILD)/bootloader/bootloader.bin \

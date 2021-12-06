@@ -43,8 +43,8 @@
 #include "drv_aw9523b.h"
 
 
-#define BOARD_MATATALAB
-
+//#define BOARD_MATATALAB
+#define BOARD_S3_DevKitC
 // WROVER-KIT PIN Map
 #ifdef BOARD_WROVER_KIT
 
@@ -112,6 +112,28 @@
 #define CAM_PIN_HREF 47
 #define CAM_PIN_PCLK 42
 
+#elif defined BOARD_S3_DevKitC
+
+#define CAM_PIN_PWDN 42
+#define CAM_PIN_RESET 41
+
+#define CAM_PIN_VSYNC 6
+#define CAM_PIN_HREF 7
+#define CAM_PIN_PCLK 13
+#define CAM_PIN_XCLK 15
+
+#define CAM_PIN_SIOD 4
+#define CAM_PIN_SIOC 5
+
+#define CAM_PIN_D0 8
+#define CAM_PIN_D1 9
+#define CAM_PIN_D2 10
+#define CAM_PIN_D3 11
+#define CAM_PIN_D4 12
+#define CAM_PIN_D5 18
+#define CAM_PIN_D6 17
+#define CAM_PIN_D7 16
+
 #endif
 
 static const char *TAG = "example:take_picture";
@@ -150,6 +172,7 @@ static camera_config_t camera_config = {
 static esp_err_t init_camera()
 {
     //initialize the PWDN and RESET pin
+    #ifdef BOARD_MATATALAB
     aw9523b_init();
     ext_write_digital(CAMERA_RESET_PIN, 1);
     ext_write_digital(CAMERA_PWDN_PIN, 0);
@@ -158,6 +181,10 @@ static esp_err_t init_camera()
     ext_write_digital(LCD_TP_RESET_PIN, 1);
     ext_write_digital(PERI_PWR_ON_PIN, 0);
     ext_write_digital(LIGHT_SW_PIN, 0);
+    #elif defined BOARD_S3_DevKitC
+
+    #endif
+
     //initialize the camera
     esp_err_t err = esp_camera_init(&camera_config);
     if (err != ESP_OK)

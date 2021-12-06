@@ -208,6 +208,8 @@ static void profile_create(lv_obj_t * parent)
     lv_obj_t * dsc = lv_label_create(panel1);
     lv_obj_add_style(dsc, &style_text_muted, 0);
     lv_label_set_text(dsc, "This is a short description of me. Take a look at my profile!" );
+    lv_obj_set_style_text_color(dsc, lv_color_hex(0xFF0000), 0);
+    //lv_style_set_text_color(&style_artist,lv_color_hex(0xb1b0be));
     lv_label_set_long_mode(dsc, LV_LABEL_LONG_WRAP);
 
     lv_obj_t * email_icn = lv_label_create(panel1);
@@ -215,6 +217,7 @@ static void profile_create(lv_obj_t * parent)
     lv_label_set_text(email_icn, LV_SYMBOL_ENVELOPE);
 
     lv_obj_t * email_label = lv_label_create(panel1);
+    lv_obj_set_style_text_color(email_label, lv_color_hex(0x00FF00), 0);
     lv_label_set_text(email_label, "elena@smith.com");
 
     lv_obj_t * call_icn = lv_label_create(panel1);
@@ -222,6 +225,7 @@ static void profile_create(lv_obj_t * parent)
     lv_label_set_text(call_icn, LV_SYMBOL_CALL);
 
     lv_obj_t * call_label = lv_label_create(panel1);
+    lv_obj_set_style_text_color(call_label, lv_color_hex(0x0000FF), 0);
     lv_label_set_text(call_label, "+79 246 123 4567");
 
     lv_obj_t * log_out_btn = lv_btn_create(panel1);

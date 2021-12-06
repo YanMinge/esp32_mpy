@@ -1166,6 +1166,15 @@ static mp_obj_t py_image_to_bytes(size_t n_args, const mp_obj_t *args, mp_map_t 
             }
             break;
     }
+/*
+    uint8_t* data = (uint8_t*) color_p;
+    for(int i = 0; i < pic->len; i+=2){
+                uint8_t temp = 0;
+                temp = buffer->data[i];
+                buffer->data[i] = buffer->data[i+1];
+                buffer->data[i+1] = temp;
+    }
+*/
     mp_obj_array_t *o = m_new_obj(mp_obj_array_t);
     o->base.type = &mp_type_bytearray;
     o->typecode = BYTEARRAY_TYPECODE;

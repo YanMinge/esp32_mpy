@@ -10,8 +10,8 @@
 #define I2C_NUMBER(num)  _I2C_NUMBER(num)
 #define DATA_LENGTH      512
 
-#define I2C1_MASTER_SCL_IO  9               /*!< gpio number for I2C1 master clock */
-#define I2C1_MASTER_SDA_IO  8               /*!< gpio number for I2C1 master data  */
+#define I2C1_MASTER_SCL_IO  18//9               /*!< gpio number for I2C1 master clock */
+#define I2C1_MASTER_SDA_IO  17//8               /*!< gpio number for I2C1 master data  */
 #define I2C1_MASTER_NUM     I2C_NUMBER(1)    /*!< I2C1 port number for master dev */
 #define I2C1_MASTER_FREQ_HZ  200000          /*!< I2C master clock frequency */
 #define I2C_MASTER_TX_BUF_DISABLE 0          /*!< I2C master doesn't need buffer */
