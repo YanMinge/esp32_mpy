@@ -164,11 +164,11 @@ elseif(${IDF_TARGET} STREQUAL "esp32s3")
         # Last (optional) parameter is the encryption for the target. In our
         # case, spiffs is not encrypt so pass FALSE to the function.
         esptool_py_flash_target(model-flash "${main_args}" "${sub_args}" ALWAYS_PLAINTEXT)
-        esptool_py_flash_to_partition(model-flash "model" "${image_file}")
+        #esptool_py_flash_to_partition(model-flash "model" "${image_file}")
 
         add_dependencies(model-flash spiffs_model_bin)
 
-        esptool_py_flash_to_partition(flash "model" "${image_file}")
+        #esptool_py_flash_to_partition(flash "model" "${image_file}")
         add_dependencies(flash spiffs_model_bin)
     else()
         set(message "Failed to create SPIFFS image for partition 'model'. "

@@ -152,7 +152,7 @@ void mp_task(void *pvParameter) {
         mp_task_heap = malloc(mp_task_heap_size);
     }
 
-    ble_prph_main();
+    //ble_prph_main();
 //soft_reset:
     // initialise the stack pointer for the main thread
     mp_stack_set_top((void *)sp);
@@ -259,7 +259,7 @@ void app_main(void) {
     // Create and transfer control to the MicroPython task.
     //xTaskCreatePinnedToCore(voice_read_task_c, "read_task", 4 * 1024, NULL, MP_TASK_PRIORITY, NULL, 0);
     xTaskCreatePinnedToCore(mp_task, "mp_task", MP_TASK_STACK_SIZE / sizeof(StackType_t), NULL, MP_TASK_PRIORITY, &mp_main_task_handle, MP_TASK_COREID);
-    xTaskCreatePinnedToCore(system_management_task, "system_management_task", SYSTEM_MANAGEMENT_TASK_STACK_SIZE / sizeof(StackType_t), NULL, SYSTEM_MANAGEMENT_TASK_PRIORITY, NULL, 0);
+    //xTaskCreatePinnedToCore(system_management_task, "system_management_task", SYSTEM_MANAGEMENT_TASK_STACK_SIZE / sizeof(StackType_t), NULL, SYSTEM_MANAGEMENT_TASK_PRIORITY, NULL, 0);
 }
 
 void nlr_jump_fail(void *val) {
